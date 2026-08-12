@@ -1,7 +1,7 @@
 what should this app to do ? 
 
-Load an image with OpenCV. []
-Print its shape and understand what (height, width, channels) means.[]
+Load an image with OpenCV. [X]
+Print its shape and understand what (height, width, channels) means.[X]
 Display the image in a window.[]
 Read the value of one pixel.[]
 Change the value of one pixel or small area.[]
