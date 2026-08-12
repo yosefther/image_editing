@@ -77,8 +77,12 @@ name = "test-one"
 version = "0.1.0"
 source = { editable = "." }
 dependencies = [
+    { name = "numpy" },
     { name = "opencv-python" },
 ]
 
 [package.metadata]
-requires-dist = [{ name = "opencv-python", specifier = ">=5.0.0.93" }]
+requires-dist = [
+    { name = "numpy", specifier = ">=2.5.2" },
+    { name = "opencv-python", specifier = ">=5.0.0.93" },
+]
