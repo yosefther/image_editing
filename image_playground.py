@@ -4,14 +4,17 @@ import numpy as np
 class UploadImage:
     def __init__(self, image_path:str):
         self.image_path = image_path
-        self.window_names = [
-             "Blue Channel",
-             "Green Channel",
-             "Red Channel"
+        cv2.namedWindow("controle_window", cv2.WINDOW_NORMAL)
+        cv2.resizeWindow("controle_window", 800, 600)
+
+        self.controle_windows = [
+             "light 0.1 Channel",
+             "light 0.5 Channel",
+             "light 2 Channel"
          ]
-        for window_name in self.window_names:
-            cv2.namedWindow(window_name, cv2.WINDOW_NORMAL)
-            cv2.resizeWindow(window_name, 800, 600)
+        for controle_window in self.controle_windows:
+            cv2.namedWindow(controle_window, cv2.WINDOW_NORMAL)
+            cv2.resizeWindow(controle_window, 800, 600)
 
 
     def upload(self):
@@ -21,16 +24,14 @@ class UploadImage:
             raise ValueError("Image not found or unable to read the image.")
         else:
             print("Image uploaded successfully.")
-            print(f"Image shape: {image.shape}") 
-            return image 
+            print(f"Image shape: {image.shape}")
+            mshow = cv2.imshow("controle_window", image) 
+            mshow = cv2.imshow("light 0.1 Channel", image *255)
+            # mshow = cv2.imshow("light 0.5 Channel", image * 0.5)
+            # mshow = cv2.imshow("light 2 Channel", image * 2)
+                
+            cv2.waitKey(0)
+            cv2.destroyAllWindows()
 
-    def channel_split (self):
-        image = self.upload()        
-        blue , green, red = cv2.split(image)
-        zeros = np.zeros_like(blue)
-        print(type(blue), type(green), type(red))
-        cv2.imshow("Blue Channel", cv2.merge([blue, green, zeros]))
-        cv2.imshow("Green Channel", cv2.merge([zeros, green, zeros]))
-        cv2.imshow("Red Channel", cv2.merge([blue, zeros, red]))
-        cv2.waitKey(0)
-        cv2.destroyAllWindows()
+            # return image 
+
